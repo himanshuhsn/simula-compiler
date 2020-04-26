@@ -1,0 +1,12 @@
+#define op_stdassign 10
+#define op_refassign 11
+#define op_boolnot 12
+#define op_booland 13
+#define op_boolor 14
+#define op_equal 15
+#define op_notequal 16
+#define op_lessequal 17
+#define op_greaterequal 18
+#define op_less 19
+#define op_greater 20
+#define op_comment 21
