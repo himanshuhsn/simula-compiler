@@ -1,11 +1,50 @@
+/* A Scanner for Simula language*/
+
 %{
+#include <string.h>
+#include <stdlib.h>
+
+/* tokens arie defined in these headers */
+#include "type.h"
 #include "operator.h"
 #include "keyword.h"
+
+/*variables declaration*/
+int line_count = 0;
+yylType yylval;
 %}
+
+%x CMNT
+
+DELIM      	([ \t])
+WHITESPACES ({DELIM}+)
+POSI_DECI   ([1-9])
+DECI    	(0|{POSI_DECI})
+DECIMAL    	(0|{POSI_DECI}{DECI}*)
+LOWER      	([a-z])
+LETTER     	({LOWER}|[:upper:]|_)
+IDENTIFIER 	({LETTER}({LETTER}|{DECI}|_)*)
 
 %%
 
-[0-9]* {return INTEGER;}
+"comment" 	{BEGIN CMNT;}
+<CMNT>\n	{++line_count;}
+<CMNT>";" 	{BEGIN INITIAL;}
+<CMNT>.		{;}
+
+\n			{
+				++line_count;
+				return char_newline;
+			}
+
+"\"".*"\""  {
+				yylval.string=(char *)malloc((yyleng+1)*(sizeof(char)));
+				strncpy(yylval.string, yytext+1, yyleng-2);
+				yylval.string[yyleng-2]='\0';
+				return STRNG;
+			}
+
+{WHITESPACES} {;}
 
 ":="  {return op_stdassign;}
 ":-"  {return op_refassign;}
@@ -19,12 +58,15 @@
 "<"  {return op_less;}
 ">"  {return op_greater;}
 "!"  {return op_comment;}
+"("	 {return op_leftparen;}
+")"  {return op_rightparen;}
+";"  {return op_semicolon;}
 
-"short integer"  {return key_data;}
-"real"  {return key_data;}
-"long real"  {return key_data;}
-"boolean"  {return key_data;}
-"boolean character"  {return key_data;}
+"short integer"  {return data_shortint;}
+"real"  {return data_real;}
+"long real"  {return data_longreal;}
+"boolean"  {return data_bool;}
+"boolean character"  {return data_boolchar;}
 
 "activate"  {return key_activate;}
 "after"  {return key_after;}
@@ -55,7 +97,7 @@
 "is"  {return key_is;}
 "long"  {return key_long;}
 
-"Name"  {return key_Name;}
+"name"  {return key_name;}
 "new"  {return key_new;}
 "none"  {return key_none;}
 "notext"  {return key_notext;}
@@ -83,6 +125,22 @@
 "false"  {return key_false;}
 "true"  {return key_true;}
 
-///insert identifier here
+{IDENTIFIER}	{
+					yylval.string=(char *)malloc((yyleng+1)*(sizeof(char)));
+					strncpy(yylval.string, yytext, yyleng + 1);
+					return ID;
+				}
 
-%% 
+{DECIMAL}	{
+				yylval.integer = atoi(yytext);
+				return NUM;
+		  	}
+
+.			{;}
+
+%%
+
+int yywrap(void)
+{
+	return 1;
+}

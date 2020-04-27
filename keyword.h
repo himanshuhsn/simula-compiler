@@ -25,7 +25,7 @@
 #define key_integer 124
 #define key_is 125
 #define key_long 126
-#define key_Name 127
+#define key_name 127
 #define key_new 128
 #define key_none 129
 #define key_notext 130
@@ -50,3 +50,10 @@
 #define key_while 149
 #define key_false 150
 #define key_true 151
+
+/* datatypes are defined here */
+#define data_shortint 152
+#define data_real 153
+#define data_longreal 154
+#define data_bool 155
+#define data_boolchar 156
