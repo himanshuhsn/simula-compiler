@@ -22,6 +22,9 @@ int main(void)
 						free (yylval.string);
 						break;
 
+			case char_newline : printf("\n");
+								break;
+
 			//add the case for other keyword
 
 			default : printf("%d ",s);
