@@ -1,0 +1,36 @@
+begin
+class glyph;
+virtual: procedure print is procedure print;;
+bbegin
+end;
+
+glyph class char (c);
+character c;
+begin
+procedure print;
+outchar(c);
+end;
+
+glyph class line (elements);
+ref (glyph) array elements;
+begin
+procedure print;
+begin
+integer i;
+for i:= 1 step 1 until upperbound (elements, 1) do
+elements (i).print;
+outimage;
+end;
+end;
+
+ref (glyph) rg;
+ref (glyph) array rgs (1 : 4);
+
+! main program;
+rgs (1):- new char ('a');
+rgs (2):- new char ('b');
+rgs (3):- new char ('b');
+rgs (4):- new char ('a');
+rg:- new line (rgs);
+rg.print;
+end;
