@@ -1,0 +1,8 @@
+begin
+    real a;
+    a := 5/2;
+   outText ("Hello World!");
+   outimage;
+   outreal(a);
+   outimage;
+end;

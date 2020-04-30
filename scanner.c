@@ -39,6 +39,10 @@ int main(void)
 			case op_leftparen : printf("<(> "); break;
 			case op_rightparen : printf("<)> "); break;
 			case op_semicolon : printf("<;> "); break;
+			case op_plus : printf("<+> "); break;
+			case op_minus : printf("<-> "); break;
+			case op_mult : printf("<*> "); break;
+			case op_div : printf("</> "); break;
 
 			/* keyword printing */
 			case key_activate : printf("<KEY_ACTIVATE> "); break;
@@ -98,7 +102,10 @@ int main(void)
 			case data_longreal : printf("<DATA_LONGREAL> "); break;
 			case data_bool : printf("<DATA_BOOL> "); break;
 			case data_boolchar : printf("<DATA_BOOLCHAR> "); break;
-
+			case key_outtext : printf("<KEY_OUTTEXT> "); break;
+			case key_outimage : printf("<KEY_OUTIMAGE> "); break;
+			case key_outreal : printf("<KEY_OUTREAL> "); break;
+			case key_outint : printf("<KEY_OUTINT> "); break;
 
 			//add the case for other keyword
 

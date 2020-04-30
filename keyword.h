@@ -57,3 +57,9 @@
 #define data_longreal 154
 #define data_bool 155
 #define data_boolchar 156
+
+/* continue */
+#define key_outtext 157
+#define key_outimage 158
+#define key_outreal 159
+#define key_outint 160

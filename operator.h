@@ -14,3 +14,9 @@
 #define op_leftparen 23
 #define op_rightparen 24
 #define op_semicolon 25
+
+/* arithmatic operator */
+#define op_plus 26
+#define op_minus 27
+#define op_mult 28
+#define op_div 29

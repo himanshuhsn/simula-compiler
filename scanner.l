@@ -61,6 +61,10 @@ IDENTIFIER 	({LETTER}({LETTER}|{DECI}|_)*)
 "("	 {return op_leftparen;}
 ")"  {return op_rightparen;}
 ";"  {return op_semicolon;}
+"+"  {return op_plus;}
+"-"  {return op_minus;}
+"*"  {return op_mult;}
+"/"  {return op_div;}
 
 "short integer"  {return data_shortint;}
 "real"  {return data_real;}
@@ -125,17 +129,21 @@ IDENTIFIER 	({LETTER}({LETTER}|{DECI}|_)*)
 "false"  {return key_false;}
 "true"  {return key_true;}
 
+"outtext"  {return key_outtext;}
+"outimage"  {return key_outimage;}
+"outreal"  {return key_outreal;}
+"outint"  {return key_outint;}
+
 {IDENTIFIER}	{
 					yylval.string=(char *)malloc((yyleng+1)*(sizeof(char)));
 					strncpy(yylval.string, yytext, yyleng + 1);
 					return ID;
-				}
+		}
 
 {DECIMAL}	{
 				yylval.integer = atoi(yytext);
 				return NUM;
-		  	}
-
+		}
 .			{;}
 
 %%
