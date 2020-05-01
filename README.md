@@ -5,10 +5,10 @@
 >NOTE:  Simula code (keywords) should be in lower case
 >
 ### commands for compilation:
-> flex scanner.l
-> cc -Wall -c lex.yy.c
-> cc -Wall scanner.c lex.yy.o
-> ./a.out < inputfile
+>- flex scanner.l
+>- cc -Wall -c lex.yy.c
+>- cc -Wall scanner.c lex.yy.o
+>- ./a.out < inputfile
 
 ### file structures
 There are 3 types of files:
